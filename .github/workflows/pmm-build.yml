@@ -30,6 +30,8 @@ jobs:
       - name: Make deps
         working-directory: pmm-submodules
         run: |
+          python3 -m pip install pip --upgrade
+          pip install pyopenssl --upgrade
           pip install -r requirements.txt
           make deps
 
