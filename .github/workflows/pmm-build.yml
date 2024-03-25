@@ -1,0 +1,37 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  pmm-build:
+    name: 'PMM Build'
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: PMM-2.0
+          repository: Percona-Lab/pmm-submodules.git
+      
+      - name: Set deps file
+        uses: DamianReeves/write-file-action@master
+        with:
+          path: pmm-submodules/ci.yml
+          contents: |
+            deps:
+              - name: pmm
+                url: https://github.com/wfelipew/pmm
+                branch: main
+          write-mode: overwrite
+
+      - name: Make deps
+        working-directory: pmm-submodules
+        run: |
+          make deps
+
+      - name: Build
+        working-directory: pmm-submodules
+        run: |
+          sources/pmm/src/github.com/percona/pmm/build/scripts/build-server    
