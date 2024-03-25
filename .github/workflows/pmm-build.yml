@@ -34,6 +34,7 @@ jobs:
           pip install pyopenssl --upgrade
           pip install requests --upgrade 
           pip install -r requirements.txt
+          make submodules
           make deps
 
       - name: Build
