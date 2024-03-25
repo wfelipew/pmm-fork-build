@@ -14,6 +14,7 @@ jobs:
         with:
           ref: PMM-2.0
           repository: Percona-Lab/pmm-submodules.git
+          path: pmm-submodules
       
       - name: Set deps file
         uses: DamianReeves/write-file-action@master
