@@ -30,6 +30,7 @@ jobs:
       - name: Make deps
         working-directory: pmm-submodules
         run: |
+          pip install -r requirements.txt
           make deps
 
       - name: Build
