@@ -37,8 +37,8 @@ jobs:
           make submodules
           make deps
 
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
       - name: Fix permissions
         working-directory: pmm-submodules
