@@ -37,7 +37,10 @@ jobs:
           make submodules
           make deps
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      
       - name: Build
         working-directory: pmm-submodules
         run: |
-          sudo sources/pmm/src/github.com/percona/pmm/build/scripts/build-server    
+          sources/pmm/src/github.com/percona/pmm/build/scripts/build-server
