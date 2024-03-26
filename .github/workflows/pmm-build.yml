@@ -40,4 +40,4 @@ jobs:
       - name: Build
         working-directory: pmm-submodules
         run: |
-          sources/pmm/src/github.com/percona/pmm/build/scripts/build-server    
+          sudo sources/pmm/src/github.com/percona/pmm/build/scripts/build-server    
