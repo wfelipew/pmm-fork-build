@@ -50,3 +50,16 @@ jobs:
         working-directory: pmm-submodules
         run: |
           sources/pmm/src/github.com/percona/pmm/build/scripts/build-server
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push image
+        working-directory: pmm-submodules
+        run: |
+          VERSION=$( cat VERSION )
+          docker tag perconalab/pmm-server-fb:$VERSION wfelipew/pmm-server-ocp-rootless:$VERSION
+          docker push wfelipew/pmm-server-ocp-rootless:$VERSION
